@@ -1,0 +1,189 @@
+{
+  "accuracy": 0.38421052631578945,
+  "f1_macro": 0.33040240223497586,
+  "support": 380,
+  "class_order": [
+    "glass",
+    "paper",
+    "cardboard",
+    "plastic",
+    "metal",
+    "trash"
+  ],
+  "classification_report": {
+    "glass": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 76.0
+    },
+    "paper": {
+      "precision": 0.5333333333333333,
+      "recall": 0.449438202247191,
+      "f1-score": 0.4878048780487805,
+      "support": 89.0
+    },
+    "cardboard": {
+      "precision": 0.6166666666666667,
+      "recall": 0.6166666666666667,
+      "f1-score": 0.6166666666666667,
+      "support": 60.0
+    },
+    "plastic": {
+      "precision": 0.33125,
+      "recall": 0.726027397260274,
+      "f1-score": 0.45493562231759654,
+      "support": 73.0
+    },
+    "metal": {
+      "precision": 0.14705882352941177,
+      "recall": 0.08064516129032258,
+      "f1-score": 0.10416666666666667,
+      "support": 62.0
+    },
+    "trash": {
+      "precision": 0.22448979591836735,
+      "recall": 0.55,
+      "f1-score": 0.3188405797101449,
+      "support": 20.0
+    },
+    "accuracy": 0.38421052631578945,
+    "macro avg": {
+      "precision": 0.30879976990796315,
+      "recall": 0.4037962379107423,
+      "f1-score": 0.33040240223497586,
+      "support": 380.0
+    },
+    "weighted avg": {
+      "precision": 0.3217246306417304,
+      "recall": 0.38421052631578945,
+      "f1-score": 0.3327896829027953,
+      "support": 380.0
+    }
+  },
+  "zero_division": 0,
+  "zero_division_explanation": "Undefined precision, recall or F1 is assigned 0; all six labels remain in the macro average.",
+  "confusion_count": [
+    [
+      0,
+      10,
+      7,
+      35,
+      12,
+      12
+    ],
+    [
+      0,
+      40,
+      5,
+      33,
+      7,
+      4
+    ],
+    [
+      0,
+      4,
+      37,
+      8,
+      4,
+      7
+    ],
+    [
+      0,
+      9,
+      5,
+      53,
+      4,
+      2
+    ],
+    [
+      2,
+      9,
+      4,
+      29,
+      5,
+      13
+    ],
+    [
+      0,
+      3,
+      2,
+      2,
+      2,
+      11
+    ]
+  ],
+  "confusion_row_percent": [
+    [
+      0.0,
+      13.157894736842104,
+      9.210526315789474,
+      46.05263157894737,
+      15.789473684210526,
+      15.789473684210526
+    ],
+    [
+      0.0,
+      44.943820224719104,
+      5.617977528089888,
+      37.07865168539326,
+      7.865168539325842,
+      4.49438202247191
+    ],
+    [
+      0.0,
+      6.666666666666667,
+      61.666666666666664,
+      13.333333333333334,
+      6.666666666666667,
+      11.666666666666666
+    ],
+    [
+      0.0,
+      12.32876712328767,
+      6.8493150684931505,
+      72.6027397260274,
+      5.47945205479452,
+      2.73972602739726
+    ],
+    [
+      3.225806451612903,
+      14.516129032258064,
+      6.451612903225806,
+      46.774193548387096,
+      8.064516129032258,
+      20.967741935483872
+    ],
+    [
+      0.0,
+      15.0,
+      10.0,
+      10.0,
+      10.0,
+      55.0
+    ]
+  ],
+  "bootstrap_95ci": {
+    "method": "stratified nonparametric percentile bootstrap within true class",
+    "repetitions": 2000,
+    "seed": 20261127,
+    "confidence_level": 0.95,
+    "accuracy": [
+      0.3447368421052632,
+      0.4263157894736842
+    ],
+    "f1_macro": [
+      0.29100062113846903,
+      0.36980838757244755
+    ],
+    "interpretation": "Test-sample uncertainty conditional on the frozen trained model and class supports; excludes training-seed variation and distribution shift."
+  },
+  "experiment": "mlp_128_weighted",
+  "evaluated_at_utc": "2026-10-17T18:56:48.073902+00:00",
+  "selection_lock_sha256": "7f8b3746155d78f4a69911f4e5d98e2151ff676301d9195084b615bd1717125b",
+  "checkpoint_sha256": "4cc59b09d44d13cbf71578fe51f4fb58013b49f1c70ba07e79f139143527d757",
+  "predictions_sha256": "e1be71a624de60e668ab6afa5378ba5a675bfd48977b4510b8d86d8740b89c19",
+  "inference_device": "cpu",
+  "python_version": "3.12.14",
+  "torch_version": "2.14.1+cpu"
+}

@@ -1,0 +1,189 @@
+{
+  "accuracy": 0.44473684210526315,
+  "f1_macro": 0.35833748145894145,
+  "support": 380,
+  "class_order": [
+    "glass",
+    "paper",
+    "cardboard",
+    "plastic",
+    "metal",
+    "trash"
+  ],
+  "classification_report": {
+    "glass": {
+      "precision": 0.375,
+      "recall": 0.11842105263157894,
+      "f1-score": 0.18,
+      "support": 76.0
+    },
+    "paper": {
+      "precision": 0.5046728971962616,
+      "recall": 0.6067415730337079,
+      "f1-score": 0.5510204081632653,
+      "support": 89.0
+    },
+    "cardboard": {
+      "precision": 0.7192982456140351,
+      "recall": 0.6833333333333333,
+      "f1-score": 0.7008547008547008,
+      "support": 60.0
+    },
+    "plastic": {
+      "precision": 0.33766233766233766,
+      "recall": 0.7123287671232876,
+      "f1-score": 0.4581497797356828,
+      "support": 73.0
+    },
+    "metal": {
+      "precision": 0.34210526315789475,
+      "recall": 0.20967741935483872,
+      "f1-score": 0.26,
+      "support": 62.0
+    },
+    "trash": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 20.0
+    },
+    "accuracy": 0.44473684210526315,
+    "macro avg": {
+      "precision": 0.37978979060508816,
+      "recall": 0.38841702424612445,
+      "f1-score": 0.35833748145894145,
+      "support": 380.0
+    },
+    "weighted avg": {
+      "precision": 0.42745699882223553,
+      "recall": 0.44473684210526315,
+      "f1-score": 0.40615008499609867,
+      "support": 380.0
+    }
+  },
+  "zero_division": 0,
+  "zero_division_explanation": "Undefined precision, recall or F1 is assigned 0; all six labels remain in the macro average.",
+  "confusion_count": [
+    [
+      9,
+      16,
+      6,
+      33,
+      12,
+      0
+    ],
+    [
+      1,
+      54,
+      3,
+      28,
+      3,
+      0
+    ],
+    [
+      3,
+      8,
+      41,
+      7,
+      1,
+      0
+    ],
+    [
+      4,
+      12,
+      4,
+      52,
+      1,
+      0
+    ],
+    [
+      5,
+      14,
+      0,
+      30,
+      13,
+      0
+    ],
+    [
+      2,
+      3,
+      3,
+      4,
+      8,
+      0
+    ]
+  ],
+  "confusion_row_percent": [
+    [
+      11.842105263157896,
+      21.05263157894737,
+      7.894736842105263,
+      43.421052631578945,
+      15.789473684210526,
+      0.0
+    ],
+    [
+      1.1235955056179776,
+      60.674157303370784,
+      3.3707865168539324,
+      31.46067415730337,
+      3.3707865168539324,
+      0.0
+    ],
+    [
+      5.0,
+      13.333333333333334,
+      68.33333333333333,
+      11.666666666666666,
+      1.6666666666666667,
+      0.0
+    ],
+    [
+      5.47945205479452,
+      16.438356164383563,
+      5.47945205479452,
+      71.23287671232876,
+      1.36986301369863,
+      0.0
+    ],
+    [
+      8.064516129032258,
+      22.580645161290324,
+      0.0,
+      48.38709677419355,
+      20.967741935483872,
+      0.0
+    ],
+    [
+      10.0,
+      15.0,
+      15.0,
+      20.0,
+      40.0,
+      0.0
+    ]
+  ],
+  "bootstrap_95ci": {
+    "method": "stratified nonparametric percentile bootstrap within true class",
+    "repetitions": 2000,
+    "seed": 20261127,
+    "confidence_level": 0.95,
+    "accuracy": [
+      0.4,
+      0.4868421052631579
+    ],
+    "f1_macro": [
+      0.3185168067943183,
+      0.39734130740028517
+    ],
+    "interpretation": "Test-sample uncertainty conditional on the frozen trained model and class supports; excludes training-seed variation and distribution shift."
+  },
+  "experiment": "mlp_128_unweighted",
+  "evaluated_at_utc": "2026-10-17T18:56:47.766434+00:00",
+  "selection_lock_sha256": "7f8b3746155d78f4a69911f4e5d98e2151ff676301d9195084b615bd1717125b",
+  "checkpoint_sha256": "b0135cf117b28b532d7b5a94edcf651b3990a41540dfb0d0605ff1f6a8c49dbf",
+  "predictions_sha256": "b4d1c15d8bcdd873ae960a82902ae7727972a9724857eddb8e701c833a112827",
+  "inference_device": "cpu",
+  "python_version": "3.12.14",
+  "torch_version": "2.14.1+cpu"
+}

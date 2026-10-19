@@ -1,0 +1,189 @@
+{
+  "accuracy": 0.5815789473684211,
+  "f1_macro": 0.5718466066480918,
+  "support": 380,
+  "class_order": [
+    "glass",
+    "paper",
+    "cardboard",
+    "plastic",
+    "metal",
+    "trash"
+  ],
+  "classification_report": {
+    "glass": {
+      "precision": 0.5076923076923077,
+      "recall": 0.4342105263157895,
+      "f1-score": 0.46808510638297873,
+      "support": 76.0
+    },
+    "paper": {
+      "precision": 0.8035714285714286,
+      "recall": 0.5056179775280899,
+      "f1-score": 0.6206896551724138,
+      "support": 89.0
+    },
+    "cardboard": {
+      "precision": 0.8679245283018868,
+      "recall": 0.7666666666666667,
+      "f1-score": 0.8141592920353983,
+      "support": 60.0
+    },
+    "plastic": {
+      "precision": 0.5862068965517241,
+      "recall": 0.6986301369863014,
+      "f1-score": 0.6375,
+      "support": 73.0
+    },
+    "metal": {
+      "precision": 0.45714285714285713,
+      "recall": 0.5161290322580645,
+      "f1-score": 0.48484848484848486,
+      "support": 62.0
+    },
+    "trash": {
+      "precision": 0.2857142857142857,
+      "recall": 0.7,
+      "f1-score": 0.4057971014492754,
+      "support": 20.0
+    },
+    "accuracy": 0.5815789473684211,
+    "macro avg": {
+      "precision": 0.5847087173290817,
+      "recall": 0.603542389959152,
+      "f1-score": 0.5718466066480918,
+      "support": 380.0
+    },
+    "weighted avg": {
+      "precision": 0.6290215540289591,
+      "recall": 0.5815789473684211,
+      "f1-score": 0.5904722447557017,
+      "support": 380.0
+    }
+  },
+  "zero_division": 0,
+  "zero_division_explanation": "Undefined precision, recall or F1 is assigned 0; all six labels remain in the macro average.",
+  "confusion_count": [
+    [
+      33,
+      0,
+      3,
+      12,
+      14,
+      14
+    ],
+    [
+      5,
+      45,
+      1,
+      15,
+      11,
+      12
+    ],
+    [
+      4,
+      3,
+      46,
+      1,
+      4,
+      2
+    ],
+    [
+      6,
+      6,
+      2,
+      51,
+      5,
+      3
+    ],
+    [
+      15,
+      2,
+      1,
+      8,
+      32,
+      4
+    ],
+    [
+      2,
+      0,
+      0,
+      0,
+      4,
+      14
+    ]
+  ],
+  "confusion_row_percent": [
+    [
+      43.421052631578945,
+      0.0,
+      3.9473684210526314,
+      15.789473684210526,
+      18.42105263157895,
+      18.42105263157895
+    ],
+    [
+      5.617977528089888,
+      50.561797752808985,
+      1.1235955056179776,
+      16.853932584269664,
+      12.359550561797754,
+      13.48314606741573
+    ],
+    [
+      6.666666666666667,
+      5.0,
+      76.66666666666667,
+      1.6666666666666667,
+      6.666666666666667,
+      3.3333333333333335
+    ],
+    [
+      8.219178082191782,
+      8.219178082191782,
+      2.73972602739726,
+      69.86301369863014,
+      6.8493150684931505,
+      4.109589041095891
+    ],
+    [
+      24.193548387096776,
+      3.225806451612903,
+      1.6129032258064515,
+      12.903225806451612,
+      51.61290322580645,
+      6.451612903225806
+    ],
+    [
+      10.0,
+      0.0,
+      0.0,
+      0.0,
+      20.0,
+      70.0
+    ]
+  ],
+  "bootstrap_95ci": {
+    "method": "stratified nonparametric percentile bootstrap within true class",
+    "repetitions": 2000,
+    "seed": 20261127,
+    "confidence_level": 0.95,
+    "accuracy": [
+      0.5342105263157895,
+      0.6289473684210526
+    ],
+    "f1_macro": [
+      0.5242671196455125,
+      0.6181234252947547
+    ],
+    "interpretation": "Test-sample uncertainty conditional on the frozen trained model and class supports; excludes training-seed variation and distribution shift."
+  },
+  "experiment": "cnn_128_weighted",
+  "evaluated_at_utc": "2026-10-17T18:56:48.798679+00:00",
+  "selection_lock_sha256": "7f8b3746155d78f4a69911f4e5d98e2151ff676301d9195084b615bd1717125b",
+  "checkpoint_sha256": "c9ca8c2b5bbd010f63bdb26cee898d6d8b2ea359f99eebadb75a376c450eaa8f",
+  "predictions_sha256": "85b92980d7577ad0f7ce147bd093efcc411f3a0782ba9d8a444f9d6f3d81e6b0",
+  "inference_device": "cpu",
+  "python_version": "3.12.14",
+  "torch_version": "2.14.1+cpu"
+}
