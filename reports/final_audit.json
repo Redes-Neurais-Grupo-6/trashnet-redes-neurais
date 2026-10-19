@@ -1,0 +1,17 @@
+{
+  "checked_at_utc": "2026-10-18T10:30:22.810815+00:00",
+  "passed": [
+    "Manifesto, código central, configurações, modelos e registros coincidem com o bloqueio.",
+    "2.527 imagens; duplicatas exatas agrupadas; estratificação preservada.",
+    "Seis checkpoints; seleção pré-teste; métricas recalculadas; custos e inicializações conferidos.",
+    "Dois notebooks executados integralmente, sem saídas de erro.",
+    "Oito figuras e artigo com 10 páginas e seções exigidas."
+  ],
+  "submission_pending": [
+    "Publicar o repositório e inserir o link real no artigo.",
+    "Substituir as matrículas provisórias 9999999.",
+    "Realizar a revisão e discussão pela equipe antes da submissão."
+  ],
+  "selected_experiment": "cnn_128_weighted",
+  "pdf_pages": 10
+}

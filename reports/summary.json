@@ -1,0 +1,443 @@
+{
+  "selection_lock_sha256": "7f8b3746155d78f4a69911f4e5d98e2151ff676301d9195084b615bd1717125b",
+  "selected_experiment": "cnn_128_weighted",
+  "selected_cnn_experiment": "cnn_128_weighted",
+  "class_order": [
+    "glass",
+    "paper",
+    "cardboard",
+    "plastic",
+    "metal",
+    "trash"
+  ],
+  "experiments": [
+    {
+      "experiment": "mlp_128_unweighted",
+      "test_accuracy": 0.44473684210526315,
+      "test_f1_macro": 0.35833748145894145,
+      "val_accuracy": 0.49076517150395776,
+      "val_f1_macro": 0.39441091241661397,
+      "selected_by_validation": false,
+      "test_support": 380,
+      "parameters": 4727366,
+      "trainable_parameters": 4727366,
+      "epochs_completed": 25,
+      "best_epoch": 25,
+      "mean_epoch_seconds": 2.2671961294400034,
+      "train_seconds": 56.67990323600009,
+      "batch_size": 32,
+      "peak_rss_mb": 661.2265625,
+      "peak_gpu_mb": null,
+      "checkpoint_bytes": 18912673,
+      "test_accuracy_ci_low": 0.4,
+      "test_accuracy_ci_high": 0.4868421052631579,
+      "test_f1_macro_ci_low": 0.3185168067943183,
+      "test_f1_macro_ci_high": 0.39734130740028517
+    },
+    {
+      "experiment": "mlp_128_weighted",
+      "test_accuracy": 0.38421052631578945,
+      "test_f1_macro": 0.33040240223497586,
+      "val_accuracy": 0.42480211081794195,
+      "val_f1_macro": 0.37158722935183425,
+      "selected_by_validation": false,
+      "test_support": 380,
+      "parameters": 4727366,
+      "trainable_parameters": 4727366,
+      "epochs_completed": 25,
+      "best_epoch": 25,
+      "mean_epoch_seconds": 2.4152155713599996,
+      "train_seconds": 60.38038928399999,
+      "batch_size": 32,
+      "peak_rss_mb": 662.87890625,
+      "peak_gpu_mb": null,
+      "checkpoint_bytes": 18912673,
+      "test_accuracy_ci_low": 0.3447368421052632,
+      "test_accuracy_ci_high": 0.4263157894736842,
+      "test_f1_macro_ci_low": 0.29100062113846903,
+      "test_f1_macro_ci_high": 0.36980838757244755
+    },
+    {
+      "experiment": "cnn_128_unweighted",
+      "test_accuracy": 0.618421052631579,
+      "test_f1_macro": 0.5241419803235395,
+      "val_accuracy": 0.6253298153034301,
+      "val_f1_macro": 0.5336985850604683,
+      "selected_by_validation": false,
+      "test_support": 380,
+      "parameters": 24086,
+      "trainable_parameters": 24086,
+      "epochs_completed": 22,
+      "best_epoch": 17,
+      "mean_epoch_seconds": 2.235148087363634,
+      "train_seconds": 49.17325792199995,
+      "batch_size": 32,
+      "peak_rss_mb": 596.11328125,
+      "peak_gpu_mb": null,
+      "checkpoint_bytes": 104385,
+      "test_accuracy_ci_low": 0.5736842105263158,
+      "test_accuracy_ci_high": 0.6631578947368421,
+      "test_f1_macro_ci_low": 0.483973875947295,
+      "test_f1_macro_ci_high": 0.5639971273139897
+    },
+    {
+      "experiment": "cnn_128_weighted",
+      "test_accuracy": 0.5815789473684211,
+      "test_f1_macro": 0.5718466066480918,
+      "val_accuracy": 0.5646437994722955,
+      "val_f1_macro": 0.5591210417892226,
+      "selected_by_validation": true,
+      "test_support": 380,
+      "parameters": 24086,
+      "trainable_parameters": 24086,
+      "epochs_completed": 22,
+      "best_epoch": 17,
+      "mean_epoch_seconds": 2.3127626957727276,
+      "train_seconds": 50.88077930700001,
+      "batch_size": 32,
+      "peak_rss_mb": 594.234375,
+      "peak_gpu_mb": null,
+      "checkpoint_bytes": 104385,
+      "test_accuracy_ci_low": 0.5342105263157895,
+      "test_accuracy_ci_high": 0.6289473684210526,
+      "test_f1_macro_ci_low": 0.5242671196455125,
+      "test_f1_macro_ci_high": 0.6181234252947547
+    },
+    {
+      "experiment": "cnn_256_unweighted",
+      "test_accuracy": 0.5921052631578947,
+      "test_f1_macro": 0.5130891103245653,
+      "val_accuracy": 0.6411609498680739,
+      "val_f1_macro": 0.551134174521755,
+      "selected_by_validation": false,
+      "test_support": 380,
+      "parameters": 24086,
+      "trainable_parameters": 24086,
+      "epochs_completed": 25,
+      "best_epoch": 23,
+      "mean_epoch_seconds": 8.661554246360001,
+      "train_seconds": 216.53885615900003,
+      "batch_size": 32,
+      "peak_rss_mb": 1015.453125,
+      "peak_gpu_mb": null,
+      "checkpoint_bytes": 104385,
+      "test_accuracy_ci_low": 0.5447368421052632,
+      "test_accuracy_ci_high": 0.6368421052631579,
+      "test_f1_macro_ci_low": 0.474590520008354,
+      "test_f1_macro_ci_high": 0.5502012319205937
+    },
+    {
+      "experiment": "cnn_512_unweighted",
+      "test_accuracy": 0.6210526315789474,
+      "test_f1_macro": 0.5222506399828225,
+      "val_accuracy": 0.6517150395778364,
+      "val_f1_macro": 0.5493022584505186,
+      "selected_by_validation": false,
+      "test_support": 380,
+      "parameters": 24086,
+      "trainable_parameters": 24086,
+      "epochs_completed": 25,
+      "best_epoch": 24,
+      "mean_epoch_seconds": 50.34208535171999,
+      "train_seconds": 1258.5521337929997,
+      "batch_size": 32,
+      "peak_rss_mb": 2371.7578125,
+      "peak_gpu_mb": null,
+      "checkpoint_bytes": 104385,
+      "test_accuracy_ci_low": 0.5789473684210527,
+      "test_accuracy_ci_high": 0.6631578947368421,
+      "test_f1_macro_ci_low": 0.4817129900957364,
+      "test_f1_macro_ci_high": 0.5607279256665649
+    }
+  ],
+  "per_class": [
+    {
+      "experiment": "mlp_128_unweighted",
+      "class_name": "glass",
+      "precision": 0.375,
+      "recall": 0.11842105263157894,
+      "f1": 0.18,
+      "support": 76
+    },
+    {
+      "experiment": "mlp_128_unweighted",
+      "class_name": "paper",
+      "precision": 0.5046728971962616,
+      "recall": 0.6067415730337079,
+      "f1": 0.5510204081632653,
+      "support": 89
+    },
+    {
+      "experiment": "mlp_128_unweighted",
+      "class_name": "cardboard",
+      "precision": 0.7192982456140351,
+      "recall": 0.6833333333333333,
+      "f1": 0.7008547008547008,
+      "support": 60
+    },
+    {
+      "experiment": "mlp_128_unweighted",
+      "class_name": "plastic",
+      "precision": 0.33766233766233766,
+      "recall": 0.7123287671232876,
+      "f1": 0.4581497797356828,
+      "support": 73
+    },
+    {
+      "experiment": "mlp_128_unweighted",
+      "class_name": "metal",
+      "precision": 0.34210526315789475,
+      "recall": 0.20967741935483872,
+      "f1": 0.26,
+      "support": 62
+    },
+    {
+      "experiment": "mlp_128_unweighted",
+      "class_name": "trash",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 20
+    },
+    {
+      "experiment": "mlp_128_weighted",
+      "class_name": "glass",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 76
+    },
+    {
+      "experiment": "mlp_128_weighted",
+      "class_name": "paper",
+      "precision": 0.5333333333333333,
+      "recall": 0.449438202247191,
+      "f1": 0.4878048780487805,
+      "support": 89
+    },
+    {
+      "experiment": "mlp_128_weighted",
+      "class_name": "cardboard",
+      "precision": 0.6166666666666667,
+      "recall": 0.6166666666666667,
+      "f1": 0.6166666666666667,
+      "support": 60
+    },
+    {
+      "experiment": "mlp_128_weighted",
+      "class_name": "plastic",
+      "precision": 0.33125,
+      "recall": 0.726027397260274,
+      "f1": 0.45493562231759654,
+      "support": 73
+    },
+    {
+      "experiment": "mlp_128_weighted",
+      "class_name": "metal",
+      "precision": 0.14705882352941177,
+      "recall": 0.08064516129032258,
+      "f1": 0.10416666666666667,
+      "support": 62
+    },
+    {
+      "experiment": "mlp_128_weighted",
+      "class_name": "trash",
+      "precision": 0.22448979591836735,
+      "recall": 0.55,
+      "f1": 0.3188405797101449,
+      "support": 20
+    },
+    {
+      "experiment": "cnn_128_unweighted",
+      "class_name": "glass",
+      "precision": 0.49411764705882355,
+      "recall": 0.5526315789473685,
+      "f1": 0.5217391304347826,
+      "support": 76
+    },
+    {
+      "experiment": "cnn_128_unweighted",
+      "class_name": "paper",
+      "precision": 0.6097560975609756,
+      "recall": 0.8426966292134831,
+      "f1": 0.7075471698113207,
+      "support": 89
+    },
+    {
+      "experiment": "cnn_128_unweighted",
+      "class_name": "cardboard",
+      "precision": 0.8363636363636363,
+      "recall": 0.7666666666666667,
+      "f1": 0.8,
+      "support": 60
+    },
+    {
+      "experiment": "cnn_128_unweighted",
+      "class_name": "plastic",
+      "precision": 0.6527777777777778,
+      "recall": 0.6438356164383562,
+      "f1": 0.6482758620689655,
+      "support": 73
+    },
+    {
+      "experiment": "cnn_128_unweighted",
+      "class_name": "metal",
+      "precision": 0.5555555555555556,
+      "recall": 0.4032258064516129,
+      "f1": 0.4672897196261682,
+      "support": 62
+    },
+    {
+      "experiment": "cnn_128_unweighted",
+      "class_name": "trash",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 20
+    },
+    {
+      "experiment": "cnn_128_weighted",
+      "class_name": "glass",
+      "precision": 0.5076923076923077,
+      "recall": 0.4342105263157895,
+      "f1": 0.46808510638297873,
+      "support": 76
+    },
+    {
+      "experiment": "cnn_128_weighted",
+      "class_name": "paper",
+      "precision": 0.8035714285714286,
+      "recall": 0.5056179775280899,
+      "f1": 0.6206896551724138,
+      "support": 89
+    },
+    {
+      "experiment": "cnn_128_weighted",
+      "class_name": "cardboard",
+      "precision": 0.8679245283018868,
+      "recall": 0.7666666666666667,
+      "f1": 0.8141592920353983,
+      "support": 60
+    },
+    {
+      "experiment": "cnn_128_weighted",
+      "class_name": "plastic",
+      "precision": 0.5862068965517241,
+      "recall": 0.6986301369863014,
+      "f1": 0.6375,
+      "support": 73
+    },
+    {
+      "experiment": "cnn_128_weighted",
+      "class_name": "metal",
+      "precision": 0.45714285714285713,
+      "recall": 0.5161290322580645,
+      "f1": 0.48484848484848486,
+      "support": 62
+    },
+    {
+      "experiment": "cnn_128_weighted",
+      "class_name": "trash",
+      "precision": 0.2857142857142857,
+      "recall": 0.7,
+      "f1": 0.4057971014492754,
+      "support": 20
+    },
+    {
+      "experiment": "cnn_256_unweighted",
+      "class_name": "glass",
+      "precision": 0.3879310344827586,
+      "recall": 0.5921052631578947,
+      "f1": 0.46875,
+      "support": 76
+    },
+    {
+      "experiment": "cnn_256_unweighted",
+      "class_name": "paper",
+      "precision": 0.6888888888888889,
+      "recall": 0.6966292134831461,
+      "f1": 0.6927374301675978,
+      "support": 89
+    },
+    {
+      "experiment": "cnn_256_unweighted",
+      "class_name": "cardboard",
+      "precision": 0.8363636363636363,
+      "recall": 0.7666666666666667,
+      "f1": 0.8,
+      "support": 60
+    },
+    {
+      "experiment": "cnn_256_unweighted",
+      "class_name": "plastic",
+      "precision": 0.6818181818181818,
+      "recall": 0.6164383561643836,
+      "f1": 0.6474820143884892,
+      "support": 73
+    },
+    {
+      "experiment": "cnn_256_unweighted",
+      "class_name": "metal",
+      "precision": 0.5094339622641509,
+      "recall": 0.43548387096774194,
+      "f1": 0.46956521739130436,
+      "support": 62
+    },
+    {
+      "experiment": "cnn_256_unweighted",
+      "class_name": "trash",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 20
+    },
+    {
+      "experiment": "cnn_512_unweighted",
+      "class_name": "glass",
+      "precision": 0.48863636363636365,
+      "recall": 0.5657894736842105,
+      "f1": 0.524390243902439,
+      "support": 76
+    },
+    {
+      "experiment": "cnn_512_unweighted",
+      "class_name": "paper",
+      "precision": 0.59375,
+      "recall": 0.8539325842696629,
+      "f1": 0.7004608294930875,
+      "support": 89
+    },
+    {
+      "experiment": "cnn_512_unweighted",
+      "class_name": "cardboard",
+      "precision": 0.7903225806451613,
+      "recall": 0.8166666666666667,
+      "f1": 0.8032786885245902,
+      "support": 60
+    },
+    {
+      "experiment": "cnn_512_unweighted",
+      "class_name": "plastic",
+      "precision": 0.6438356164383562,
+      "recall": 0.6438356164383562,
+      "f1": 0.6438356164383562,
+      "support": 73
+    },
+    {
+      "experiment": "cnn_512_unweighted",
+      "class_name": "metal",
+      "precision": 0.7241379310344828,
+      "recall": 0.3387096774193548,
+      "f1": 0.46153846153846156,
+      "support": 62
+    },
+    {
+      "experiment": "cnn_512_unweighted",
+      "class_name": "trash",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 20
+    }
+  ]
+}

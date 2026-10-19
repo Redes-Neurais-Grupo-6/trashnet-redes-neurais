@@ -1,0 +1,22 @@
+Registro da execução real; caminho absoluto do projeto abreviado como <PROJETO>.
+
+Executando ['-m', 'src.evaluate', '--lock']
+Validation selection frozen: cnn_128_weighted; best CNN: cnn_128_weighted
+Executando ['-m', 'src.evaluate', '--evaluate']
+mlp_128_unweighted: accuracy=0.4447, macro F1=0.3583
+mlp_128_weighted: accuracy=0.3842, macro F1=0.3304
+cnn_128_unweighted: accuracy=0.6184, macro F1=0.5241
+cnn_128_weighted: accuracy=0.5816, macro F1=0.5718
+cnn_256_unweighted: accuracy=0.5921, macro F1=0.5131
+cnn_512_unweighted: accuracy=0.6211, macro F1=0.5223
+Executando ['-m', 'src.evaluate', '--verify-inference']
+mlp_128_unweighted: labels, all class probabilities and metrics verified; max probability difference=1.11e-16
+mlp_128_weighted: labels, all class probabilities and metrics verified; max probability difference=9.89e-17
+cnn_128_unweighted: labels, all class probabilities and metrics verified; max probability difference=1.11e-16
+cnn_128_weighted: labels, all class probabilities and metrics verified; max probability difference=1.11e-16
+cnn_256_unweighted: labels, all class probabilities and metrics verified; max probability difference=1.11e-16
+cnn_512_unweighted: labels, all class probabilities and metrics verified; max probability difference=1.11e-16
+Verification complete. No training, model selection or artifact modification was performed.
+Executando ['-m', 'src.visualize']
+Figures saved in <PROJETO>/reports/figures
+Avaliação e figuras concluídas.

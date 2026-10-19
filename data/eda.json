@@ -1,0 +1,112 @@
+{
+  "dataset_url": "https://huggingface.co/datasets/garythung/trashnet/resolve/main/dataset-resized.zip?download=true",
+  "zip_sha256": "c060e8abfe5d6de0578ca15be1ed8ad0794a865d333c3473d53d1d9ad6e38b8c",
+  "manifest_sha256": "988a0a94bf617b8f3ab88e9d6da355001cb8fe2dc59f98004779bc245b9adf7f",
+  "n_images": 2527,
+  "class_order": [
+    "glass",
+    "paper",
+    "cardboard",
+    "plastic",
+    "metal",
+    "trash"
+  ],
+  "class_counts": {
+    "glass": 501,
+    "paper": 594,
+    "cardboard": 403,
+    "plastic": 482,
+    "metal": 410,
+    "trash": 137
+  },
+  "dimensions": {
+    "512x384": 2527
+  },
+  "modes": {
+    "RGB": 2527
+  },
+  "invalid_images": [],
+  "exact_duplicate_pixel_groups": 3,
+  "conflicting_label_duplicate_groups": 3,
+  "duplicate_repairs": [
+    {
+      "duplicate": "plastic/plastic332.jpg",
+      "singleton": "plastic/plastic1.jpg",
+      "original_split": "val",
+      "grouped_split": "train"
+    }
+  ],
+  "ignored_archive_entries": [
+    "dataset-resized/.DS_Store",
+    "__MACOSX/dataset-resized/._.DS_Store",
+    "__MACOSX/dataset-resized/cardboard/._cardboard9.jpg"
+  ],
+  "duplicate_group_splits": [
+    {
+      "path": "glass/glass115.jpg",
+      "class_name": "glass",
+      "split": "train",
+      "pixel_sha256": "b2d08f52065ced309ba5ce64b66a8eeb65848808d08504b0227665725c4e4b87"
+    },
+    {
+      "path": "glass/glass176.jpg",
+      "class_name": "glass",
+      "split": "train",
+      "pixel_sha256": "6939447168c001a71438496448c2b85513a3d5f1eb8b960fe7a7a8bf6452ab6c"
+    },
+    {
+      "path": "glass/glass389.jpg",
+      "class_name": "glass",
+      "split": "train",
+      "pixel_sha256": "c751e2644345c8376f0a511aa4e34341a779d473899d506d05280304a3c210bc"
+    },
+    {
+      "path": "plastic/plastic152.jpg",
+      "class_name": "plastic",
+      "split": "train",
+      "pixel_sha256": "6939447168c001a71438496448c2b85513a3d5f1eb8b960fe7a7a8bf6452ab6c"
+    },
+    {
+      "path": "plastic/plastic332.jpg",
+      "class_name": "plastic",
+      "split": "train",
+      "pixel_sha256": "c751e2644345c8376f0a511aa4e34341a779d473899d506d05280304a3c210bc"
+    },
+    {
+      "path": "metal/metal91.jpg",
+      "class_name": "metal",
+      "split": "train",
+      "pixel_sha256": "b2d08f52065ced309ba5ce64b66a8eeb65848808d08504b0227665725c4e4b87"
+    }
+  ],
+  "split_counts": {
+    "test": {
+      "glass": 76,
+      "paper": 89,
+      "cardboard": 60,
+      "plastic": 73,
+      "metal": 62,
+      "trash": 20
+    },
+    "train": {
+      "glass": 350,
+      "paper": 416,
+      "cardboard": 282,
+      "plastic": 337,
+      "metal": 287,
+      "trash": 96
+    },
+    "val": {
+      "glass": 75,
+      "paper": 89,
+      "cardboard": 61,
+      "plastic": 72,
+      "metal": 61,
+      "trash": 21
+    }
+  },
+  "split_method": "sklearn train_test_split: estratificado 70/30; holdout 50/50, seed=42 em ambos; duplicatas agrupadas na partição da primeira linha estável, com troca de singleton da mesma classe para preservar contagens",
+  "preprocessing": "EXIF transpose; RGB; Pillow LANCZOS a partir da referência; tensor float32 / 255",
+  "augmentation": "nenhum",
+  "near_duplicate_audit": "Não há identificadores de objeto. Hashes evitam vazamento de duplicatas exatas; semelhança perceptual e múltiplas fotos do mesmo objeto não são totalmente controladas."
+}

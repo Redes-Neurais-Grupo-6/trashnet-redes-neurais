@@ -1,0 +1,1024 @@
+{
+  "pages": [
+    [
+      {
+        "type": "identification"
+      },
+      {
+        "type": "h1",
+        "text": "Resumo"
+      },
+      {
+        "type": "body",
+        "text": "Este estudo compara MLP e CNN na classificação de 2.527 imagens do TrashNet, preservando seis classes. Foram realizados seis experimentos controlados com pesos de classe e três resoluções. A divisão estratificada foi corrigida para agrupar três pares de imagens idênticas com rótulos conflitantes. A CNN em 128 × 96 com pesos de classe, selecionada exclusivamente pelo F1 macro de validação, obteve 58,16% de acurácia e 0,5718 de F1 macro no teste. A análise relaciona desempenho, desequilíbrio, custo e limitações de generalização."
+      },
+      {
+        "type": "small",
+        "text": "<b>Palavras-chave:</b> redes neurais; classificação de resíduos; TrashNet; desequilíbrio de classes."
+      },
+      {
+        "type": "h1",
+        "text": "1 Introdução"
+      },
+      {
+        "type": "body",
+        "text": "A classificação visual de resíduos pode apoiar a triagem, mas materiais distintos compartilham formas, cores e embalagens. O TrashNet oferece um cenário inicial para estudar esse problema (Thung; Yang, 2016). O objetivo é comparar uma rede totalmente conectada (MLP) e uma rede convolucional (CNN), investigar o efeito de pesos na perda e avaliar se a maior resolução compensa seu custo computacional. O estudo mede classificação de imagens inteiras, sem localizar objetos."
+      },
+      {
+        "type": "h1",
+        "text": "2 Materiais e métodos"
+      },
+      {
+        "type": "body",
+        "text": "Foi usado apenas dataset-resized.zip. A inspeção confirmou 2.527 imagens RGB de 512 × 384 pixels e nenhuma imagem inválida; três arquivos auxiliares macOS foram ignorados. Mantiveram-se vidro (glass), papel (paper), papelão (cardboard), plástico (plastic), metal e outros resíduos (trash). SHA-256 do ZIP, hashes de bytes e pixels e o manifesto da divisão estão preservados no projeto."
+      }
+    ],
+    [
+      {
+        "type": "h1",
+        "text": "2.1 Divisão, pré-processamento e controle"
+      },
+      {
+        "type": "body",
+        "text": "A semente 42 foi usada em duas divisões estratificadas (70/30 e 50/50 do restante): 1.768 imagens de treino, 379 de validação e 380 de teste. Três pares idênticos tinham rótulos conflitantes. Cada grupo foi ancorado na partição de sua primeira linha na ordenação fixa. Uma troca entre plastic332.jpg e plastic1.jpg preservou as contagens por classe; todos os pares ficaram no treino. Os rótulos originais foram mantidos, portanto permanece ruído de anotação."
+      },
+      {
+        "type": "body",
+        "text": "As imagens foram orientadas por EXIF, convertidas para RGB e redimensionadas diretamente da referência por LANCZOS; tensores float32 em C × A × L foram divididos por 255. Não houve aumento de dados nem reamostragem. Essa decisão mantém o contraste entre pesos de classe isolado. A interpolação usa Pillow (Pillow Contributors, s.d.)."
+      },
+      {
+        "type": "h1",
+        "text": "2.2 Arquiteturas e treinamento"
+      },
+      {
+        "type": "caption",
+        "text": "<b>Tabela 1 - </b>Arquiteturas e quantidade de parâmetros treináveis."
+      },
+      {
+        "type": "table",
+        "rows": [
+          [
+            "Rede",
+            "Camadas",
+            "Parâmetros"
+          ],
+          [
+            "MLP",
+            "36.864 entradas → 128 ReLU → dropout 0,2 → 64 ReLU → dropout 0,2 → 6 logits",
+            "4.727.366"
+          ],
+          [
+            "CNN",
+            "Conv 3×3 com 16, 32 e 64 filtros; BatchNorm, ReLU e MaxPool 2×2 em cada bloco; GAP → 6 logits",
+            "24.086"
+          ]
+        ],
+        "widths": [
+          0.12,
+          0.68,
+          0.2
+        ],
+        "font_size": 9.5,
+        "padding": 3
+      },
+      {
+        "type": "source",
+        "text": "Fonte: Elaboração a partir dos registros experimentais (2026)."
+      },
+      {
+        "type": "small",
+        "text": "Na CNN, a primeira convolução tem passo 2; as demais, passo 1; todas usam padding 1 e não usam bias. GAP reduz cada mapa à sua média espacial, conservando o número de parâmetros nas três resoluções. A MLP representa uma referência sem estrutura espacial explícita; a CNN compartilha filtros locais. As redes foram implementadas em PyTorch (PyTorch Contributors, s.d.)."
+      },
+      {
+        "type": "small",
+        "text": "Adotaram-se Adam (passos adaptativos), taxa comum 0,0001, lote 32 (viável em CPU nas três resoluções) e limite de 25 épocas. A entropia cruzada é apropriada às seis classes mutuamente exclusivas e recebe logits (PyTorch Contributors, s.d.). Sem pré-treinamento, cada rede reiniciou a semente 42 e a inicialização padrão do PyTorch; hashes confirmam pesos iniciais idênticos nos pares. Não houve weight decay ou agendador."
+      },
+      {
+        "type": "small",
+        "text": "Nos treinos ponderados, w<sub>c</sub> = 1.768/(6n<sub>c</sub>), usando apenas o treino: glass=0,842, paper=0,708, cardboard=1,045, plastic=0,874, metal=1,027, trash=3,069. A perda média divide a soma das perdas ponderadas pela soma dos pesos dos exemplos."
+      },
+      {
+        "type": "h1",
+        "text": "2.3 Busca exploratória e escolha dos modelos"
+      },
+      {
+        "type": "caption",
+        "text": "<b>Tabela 2 - </b>Busca em 128 × 96 sem pesos; somente validação."
+      },
+      {
+        "type": "table",
+        "rows": [
+          [
+            "Taxa Adam",
+            "F1 val. MLP",
+            "F1 val. CNN",
+            "Média"
+          ],
+          [
+            "0,001",
+            "0,1385",
+            "0,5078",
+            "0,3232"
+          ],
+          [
+            "0,0003",
+            "0,3013",
+            "0,5356",
+            "0,4184"
+          ],
+          [
+            "0,0001",
+            "0,3944",
+            "0,5337",
+            "0,4641"
+          ]
+        ],
+        "widths": [
+          0.2,
+          0.27,
+          0.27,
+          0.26
+        ],
+        "font_size": 9.5,
+        "padding": 2
+      },
+      {
+        "type": "source",
+        "text": "Fonte: Elaboração a partir dos registros experimentais (2026)."
+      },
+      {
+        "type": "small",
+        "text": "Após baixa aprendizagem na MLP inicial, três taxas foram comparadas pela média do F1 macro de validação das duas redes, nos checkpoints de menor perda; empates seguiriam a ordem da tabela. Os seis treinos finais foram reiniciados com a taxa escolhida. Early stopping (perda de validação, paciência 5, min_delta=0) limita custo e evita manter pesos após a deterioração da validação. Entre os seis checkpoints restaurados, o maior F1 macro de validação define o modelo principal; hashes e escolhas foram congelados antes do teste."
+      }
+    ],
+    [
+      {
+        "type": "h1",
+        "text": "3 Resultados"
+      },
+      {
+        "type": "small",
+        "text": "A Figura 1 confirma a estratificação. Trash representa 137/2.527 imagens (5,42%), contra 594 de paper; a razão entre a maior e a menor classe é 4,34. Arredondamentos inteiros explicam as pequenas diferenças em relação a 70/15/15."
+      },
+      {
+        "type": "caption",
+        "text": "<b>Figura 1 - </b>Distribuição das seis classes em treinamento, validação e teste."
+      },
+      {
+        "type": "figure",
+        "path": "reports/figures/fig01_distribuicao.png",
+        "max_height_cm": 5.7
+      },
+      {
+        "type": "source",
+        "text": "Fonte: Elaboração a partir dos registros experimentais (2026)."
+      },
+      {
+        "type": "caption",
+        "text": "<b>Figura 2 - </b>Dois exemplos de treinamento por classe, escolhidos por uma regra fixa."
+      },
+      {
+        "type": "figure",
+        "path": "reports/figures/fig02_exemplos.png",
+        "max_height_cm": 5.6
+      },
+      {
+        "type": "source",
+        "text": "Fonte: TrashNet (Thung; Yang, 2016), organizado neste estudo."
+      },
+      {
+        "type": "small",
+        "text": "Vidro e plástico podem compartilhar o formato de garrafas; papel e papelão apresentam texturas semelhantes. Rótulos, amassados, reflexos, sombras e a classe heterogênea trash dificultam a discriminação visual (Figura 2)."
+      },
+      {
+        "type": "caption",
+        "text": "<b>Figura 3 - </b>A mesma imagem de treino, plastic10.jpg, nas três resoluções."
+      },
+      {
+        "type": "figure",
+        "path": "reports/figures/fig03_resolucoes.png",
+        "max_height_cm": 4.3
+      },
+      {
+        "type": "source",
+        "text": "Fonte: TrashNet (Thung; Yang, 2016); redimensionamento do estudo."
+      },
+      {
+        "type": "small",
+        "text": "Na Figura 3, os painéis têm o mesmo tamanho físico para expor a perda de detalhe. Cada entrada foi gerada diretamente da referência, preservando a proporção 4:3."
+      }
+    ],
+    [
+      {
+        "type": "h1",
+        "text": "3.1 Desempenho global e custo"
+      },
+      {
+        "type": "caption",
+        "text": "<b>Tabela 3 - </b>Resultados dos seis checkpoints no mesmo teste (n=380); F1 sempre macro."
+      },
+      {
+        "type": "table",
+        "rows": [
+          [
+            "ID / experimento",
+            "F1 val.",
+            "Acurácia teste",
+            "F1 teste",
+            "Época salva"
+          ],
+          [
+            "<b>M1</b> - MLP 128×96 sem pesos",
+            "0,3944",
+            "44,47%",
+            "0,3583",
+            "25"
+          ],
+          [
+            "<b>M2</b> - MLP 128×96 com pesos",
+            "0,3716",
+            "38,42%",
+            "0,3304",
+            "25"
+          ],
+          [
+            "<b>M3</b> - CNN 128×96 sem pesos",
+            "0,5337",
+            "61,84%",
+            "0,5241",
+            "17"
+          ],
+          [
+            "<b>M4</b> - CNN 128×96 com pesos",
+            "0,5591",
+            "58,16%",
+            "0,5718",
+            "17"
+          ],
+          [
+            "<b>M5</b> - CNN 256×192 sem pesos",
+            "0,5511",
+            "59,21%",
+            "0,5131",
+            "23"
+          ],
+          [
+            "<b>M6</b> - CNN 512×384 sem pesos",
+            "0,5493",
+            "62,11%",
+            "0,5223",
+            "24"
+          ]
+        ],
+        "widths": [
+          0.39,
+          0.14,
+          0.18,
+          0.16,
+          0.13
+        ],
+        "font_size": 9.5,
+        "padding": 4
+      },
+      {
+        "type": "source",
+        "text": "Fonte: Elaboração a partir dos registros experimentais (2026)."
+      },
+      {
+        "type": "body",
+        "text": "O maior F1 macro de validação foi o de M4 (0,5591), escolhido antes de consultar o teste. Seu F1 macro de teste foi 0,5718, com intervalo percentil de 95% [0,5243; 0,6181]. Acurácia e F1 macro são complementares: o segundo dá o mesmo peso às seis classes."
+      },
+      {
+        "type": "caption",
+        "text": "<b>Tabela 4 - </b>Custos medidos na etapa final, excluída a busca exploratória."
+      },
+      {
+        "type": "table",
+        "rows": [
+          [
+            "ID",
+            "Parâmetros",
+            "MiB modelo",
+            "Épocas",
+            "Total (s)",
+            "s/época",
+            "RSS (MiB)"
+          ],
+          [
+            "M1",
+            "4.727.366",
+            "18,037",
+            "25",
+            "56,7",
+            "2,27",
+            "661,2"
+          ],
+          [
+            "M2",
+            "4.727.366",
+            "18,037",
+            "25",
+            "60,4",
+            "2,42",
+            "662,9"
+          ],
+          [
+            "M3",
+            "24.086",
+            "0,100",
+            "22",
+            "49,2",
+            "2,24",
+            "596,1"
+          ],
+          [
+            "M4",
+            "24.086",
+            "0,100",
+            "22",
+            "50,9",
+            "2,31",
+            "594,2"
+          ],
+          [
+            "M5",
+            "24.086",
+            "0,100",
+            "25",
+            "216,5",
+            "8,66",
+            "1015,5"
+          ],
+          [
+            "M6",
+            "24.086",
+            "0,100",
+            "25",
+            "1258,6",
+            "50,34",
+            "2371,8"
+          ]
+        ],
+        "widths": [
+          0.07,
+          0.18,
+          0.16,
+          0.12,
+          0.15,
+          0.15,
+          0.17
+        ],
+        "font_size": 9.3,
+        "padding": 4
+      },
+      {
+        "type": "source",
+        "text": "Fonte: Elaboração a partir dos registros experimentais (2026)."
+      },
+      {
+        "type": "body",
+        "text": "Hardware: Intel Core i3-1125G4, quatro núcleos físicos, oito lógicos e 14,8 GiB de RAM total. Foram usados CPU, quatro threads, PyTorch 2.14.1+cpu, Python 3.12.14 e lote 32 em todos os casos. Não houve redução de lote nas resoluções maiores."
+      },
+      {
+        "type": "small",
+        "text": "O cronômetro perf_counter incluiu treino, validação por época e checkpoints; excluiu download, preparação dos caches, inicialização e avaliação final. A média é tempo total/épocas concluídas. RSS é o pico absoluto do processo, amostrado a cada 50 ms por psutil (Rodola, s.d.), incluindo páginas do cache mapeadas; não é a memória de toda a máquina. Não houve GPU. O tamanho em MiB considera model.pt, apenas pesos e buffers, não o estado do otimizador."
+      },
+      {
+        "type": "small",
+        "text": "Os tempos são medições de uma execução em computador de uso geral e podem variar com carga de fundo, cache e temperatura. Os intervalos de desempenho usam 2.000 reamostragens estratificadas do teste, semente 20261127. Expressam incerteza amostral condicionada aos modelos, sem incluir variação entre sementes de treino ou mudança de domínio."
+      }
+    ],
+    [
+      {
+        "type": "h1",
+        "text": "3.2 Curvas de aprendizagem"
+      },
+      {
+        "type": "caption",
+        "text": "<b>Figura 4 - </b>Perda e acurácia de treino e validação dos seis experimentos."
+      },
+      {
+        "type": "figure",
+        "path": "reports/figures/fig04_curvas_aprendizagem.png",
+        "max_height_cm": 17.2
+      },
+      {
+        "type": "source",
+        "text": "Fonte: Elaboração a partir dos registros experimentais (2026)."
+      },
+      {
+        "type": "small",
+        "text": "A linha vertical indica a época restaurada por menor perda de validação. O término da curva pode ocorrer depois dela, pois a paciência aguarda cinco épocas sem melhora. As métricas de treino foram agregadas durante atualizações, com dropout ativo na MLP; as de validação usam modo de avaliação. Portanto, validação acima de treino em alguns pontos não é, isoladamente, sinal de vazamento."
+      },
+      {
+        "type": "small",
+        "text": "As MLPs completaram 25 épocas e salvaram a última: a perda de validação caiu de 1,714 para 1,375 sem pesos e de 1,758 para 1,478 com pesos. A redução até o limite não demonstra convergência nem sobreajuste persistente. Nas CNNs 128, ambas salvaram a época 17 e pararam na 22: o treino continuou melhorando sem nova mínima de validação. Na CNN ponderada, a acurácia de validação cresceu de 56,46% para 59,89% nesse intervalo, mas a perda piorou de 1,100 para 1,141. A divergência entre critérios ilustra por que recuperar a menor perda pode não recuperar a maior acurácia. As CNNs 256 e 512 completaram 25 épocas e restauraram, respectivamente, as épocas 23 e 24."
+      }
+    ],
+    [
+      {
+        "type": "h1",
+        "text": "3.3 Matrizes de confusão"
+      },
+      {
+        "type": "caption",
+        "text": "<b>Figura 5 - </b>Contagens e porcentagens por linha nos seis experimentos."
+      },
+      {
+        "type": "figure",
+        "path": "reports/figures/fig05_matrizes_confusao.png",
+        "max_height_cm": 21.0
+      },
+      {
+        "type": "source",
+        "text": "Fonte: Elaboração a partir dos registros experimentais (2026)."
+      },
+      {
+        "type": "small",
+        "text": "Linhas: classe real; colunas: classe prevista. Cada porcentagem divide a contagem pelo suporte da classe real; arredondamentos podem impedir soma exata de 100%. A ordem das classes é fixa em todos os painéis."
+      }
+    ],
+    [
+      {
+        "type": "h1",
+        "text": "3.4 Métricas por classe"
+      },
+      {
+        "type": "caption",
+        "text": "<b>Tabela 5 - </b>Precisão, recall, F1 e suporte de cada classe no teste."
+      },
+      {
+        "type": "table",
+        "rows": [
+          [
+            "Modelo",
+            "Classe",
+            "Precisão",
+            "Recall",
+            "F1",
+            "Suporte"
+          ],
+          [
+            "M1",
+            "glass",
+            "0,375",
+            "0,118",
+            "0,180",
+            "76"
+          ],
+          [
+            "",
+            "paper",
+            "0,505",
+            "0,607",
+            "0,551",
+            "89"
+          ],
+          [
+            "",
+            "cardboard",
+            "0,719",
+            "0,683",
+            "0,701",
+            "60"
+          ],
+          [
+            "",
+            "plastic",
+            "0,338",
+            "0,712",
+            "0,458",
+            "73"
+          ],
+          [
+            "",
+            "metal",
+            "0,342",
+            "0,210",
+            "0,260",
+            "62"
+          ],
+          [
+            "",
+            "trash",
+            "0,000",
+            "0,000",
+            "0,000",
+            "20"
+          ],
+          [
+            "M2",
+            "glass",
+            "0,000",
+            "0,000",
+            "0,000",
+            "76"
+          ],
+          [
+            "",
+            "paper",
+            "0,533",
+            "0,449",
+            "0,488",
+            "89"
+          ],
+          [
+            "",
+            "cardboard",
+            "0,617",
+            "0,617",
+            "0,617",
+            "60"
+          ],
+          [
+            "",
+            "plastic",
+            "0,331",
+            "0,726",
+            "0,455",
+            "73"
+          ],
+          [
+            "",
+            "metal",
+            "0,147",
+            "0,081",
+            "0,104",
+            "62"
+          ],
+          [
+            "",
+            "trash",
+            "0,224",
+            "0,550",
+            "0,319",
+            "20"
+          ],
+          [
+            "M3",
+            "glass",
+            "0,494",
+            "0,553",
+            "0,522",
+            "76"
+          ],
+          [
+            "",
+            "paper",
+            "0,610",
+            "0,843",
+            "0,708",
+            "89"
+          ],
+          [
+            "",
+            "cardboard",
+            "0,836",
+            "0,767",
+            "0,800",
+            "60"
+          ],
+          [
+            "",
+            "plastic",
+            "0,653",
+            "0,644",
+            "0,648",
+            "73"
+          ],
+          [
+            "",
+            "metal",
+            "0,556",
+            "0,403",
+            "0,467",
+            "62"
+          ],
+          [
+            "",
+            "trash",
+            "0,000",
+            "0,000",
+            "0,000",
+            "20"
+          ],
+          [
+            "M4",
+            "glass",
+            "0,508",
+            "0,434",
+            "0,468",
+            "76"
+          ],
+          [
+            "",
+            "paper",
+            "0,804",
+            "0,506",
+            "0,621",
+            "89"
+          ],
+          [
+            "",
+            "cardboard",
+            "0,868",
+            "0,767",
+            "0,814",
+            "60"
+          ],
+          [
+            "",
+            "plastic",
+            "0,586",
+            "0,699",
+            "0,638",
+            "73"
+          ],
+          [
+            "",
+            "metal",
+            "0,457",
+            "0,516",
+            "0,485",
+            "62"
+          ],
+          [
+            "",
+            "trash",
+            "0,286",
+            "0,700",
+            "0,406",
+            "20"
+          ],
+          [
+            "M5",
+            "glass",
+            "0,388",
+            "0,592",
+            "0,469",
+            "76"
+          ],
+          [
+            "",
+            "paper",
+            "0,689",
+            "0,697",
+            "0,693",
+            "89"
+          ],
+          [
+            "",
+            "cardboard",
+            "0,836",
+            "0,767",
+            "0,800",
+            "60"
+          ],
+          [
+            "",
+            "plastic",
+            "0,682",
+            "0,616",
+            "0,647",
+            "73"
+          ],
+          [
+            "",
+            "metal",
+            "0,509",
+            "0,435",
+            "0,470",
+            "62"
+          ],
+          [
+            "",
+            "trash",
+            "0,000",
+            "0,000",
+            "0,000",
+            "20"
+          ],
+          [
+            "M6",
+            "glass",
+            "0,489",
+            "0,566",
+            "0,524",
+            "76"
+          ],
+          [
+            "",
+            "paper",
+            "0,594",
+            "0,854",
+            "0,700",
+            "89"
+          ],
+          [
+            "",
+            "cardboard",
+            "0,790",
+            "0,817",
+            "0,803",
+            "60"
+          ],
+          [
+            "",
+            "plastic",
+            "0,644",
+            "0,644",
+            "0,644",
+            "73"
+          ],
+          [
+            "",
+            "metal",
+            "0,724",
+            "0,339",
+            "0,462",
+            "62"
+          ],
+          [
+            "",
+            "trash",
+            "0,000",
+            "0,000",
+            "0,000",
+            "20"
+          ]
+        ],
+        "widths": [
+          0.12,
+          0.24,
+          0.16,
+          0.16,
+          0.16,
+          0.16
+        ],
+        "font_size": 9.5,
+        "padding": 1.7,
+        "separators": [
+          7,
+          13,
+          19,
+          25,
+          31
+        ],
+        "spans": [
+          [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              6
+            ]
+          ],
+          [
+            [
+              0,
+              7
+            ],
+            [
+              0,
+              12
+            ]
+          ],
+          [
+            [
+              0,
+              13
+            ],
+            [
+              0,
+              18
+            ]
+          ],
+          [
+            [
+              0,
+              19
+            ],
+            [
+              0,
+              24
+            ]
+          ],
+          [
+            [
+              0,
+              25
+            ],
+            [
+              0,
+              30
+            ]
+          ],
+          [
+            [
+              0,
+              31
+            ],
+            [
+              0,
+              36
+            ]
+          ]
+        ]
+      },
+      {
+        "type": "source",
+        "text": "Fonte: Elaboração a partir dos registros experimentais (2026)."
+      },
+      {
+        "type": "small",
+        "text": "Suporte é o número de exemplos da classe avaliada. F1 macro é a média aritmética dos seis F1, calculados por 2TP/(2TP+FP+FN). Os rótulos 0 a 5 são sempre explícitos e zero_division=0 trata divisões indefinidas (Scikit-learn Developers, s.d.). Não houve previsão para M1: trash; M3: trash; M5: trash; M6: trash. A precisão indefinida dessas classes foi registrada como zero; isso não elimina seu peso no F1 macro."
+      }
+    ],
+    [
+      {
+        "type": "h1",
+        "text": "4 Discussão"
+      },
+      {
+        "type": "small",
+        "text": "Em 128 × 96, a diferença CNN menos MLP no F1 macro de teste foi 0,1658 sem pesos e 0,2414 com pesos. Essas diferenças descrevem as arquiteturas e o orçamento adotados, sem estabelecer superioridade universal."
+      },
+      {
+        "type": "caption",
+        "text": "<b>Tabela 6 - </b>Efeito dos pesos: valor ponderado menos valor sem pesos."
+      },
+      {
+        "type": "table",
+        "rows": [
+          [
+            "Arquitetura",
+            "Δ F1 macro",
+            "Δ recall trash",
+            "Δ F1 trash"
+          ],
+          [
+            "MLP",
+            "-0,0279",
+            "0,550",
+            "0,319"
+          ],
+          [
+            "CNN",
+            "0,0477",
+            "0,700",
+            "0,406"
+          ]
+        ],
+        "widths": [
+          0.25,
+          0.25,
+          0.25,
+          0.25
+        ],
+        "font_size": 9.5,
+        "padding": 2
+      },
+      {
+        "type": "source",
+        "text": "Fonte: Elaboração a partir dos registros experimentais (2026)."
+      },
+      {
+        "type": "small",
+        "text": "Na CNN, ponderar elevou o recall de trash de 0 para 70% (14/20), mas sua precisão foi 28,57%: 35 das 49 previsões trash eram de outras classes. O recall de paper caiu de 84,27% para 50,56%; a acurácia global caiu 3,68 pontos percentuais, enquanto F1 macro subiu 4,77 pontos. Na MLP, trash passou a ter 11 acertos, mas glass ficou sem acertos e o F1 macro caiu 2,79 pontos. O benefício depende da arquitetura e da classe."
+      },
+      {
+        "type": "caption",
+        "text": "<b>Figura 6 - </b>CNN sem pesos: desempenho no teste e intervalos bootstrap de 95%."
+      },
+      {
+        "type": "figure",
+        "path": "reports/figures/fig06_resolucao_desempenho.png",
+        "max_height_cm": 5.6
+      },
+      {
+        "type": "source",
+        "text": "Fonte: Elaboração a partir dos registros experimentais (2026)."
+      },
+      {
+        "type": "caption",
+        "text": "<b>Figura 7 - </b>CNN sem pesos: custo médio por época e tempo total."
+      },
+      {
+        "type": "figure",
+        "path": "reports/figures/fig07_resolucao_custo.png",
+        "max_height_cm": 5.2
+      },
+      {
+        "type": "source",
+        "text": "Fonte: Elaboração a partir dos registros experimentais (2026)."
+      },
+      {
+        "type": "small",
+        "text": "Em 512 × 384 houve apenas um acerto adicional em 380 imagens: 236 contra 235 em 128 × 96. O F1 macro caiu de 0,5241 para 0,5223; 256 × 192 também não melhorou o teste. Com 16 vezes mais pixels e os mesmos 24.086 parâmetros, 512 × 384 custou 22,52 vezes mais por época, 25,59 vezes no total e 3,98 vezes em RSS. Neste protocolo, 128 × 96 ofereceu a melhor relação entre F1 e custo entre as CNNs sem pesos; aumentar a resolução não compensou."
+      }
+    ],
+    [
+      {
+        "type": "h1",
+        "text": "4.1 Erros e limitações para aplicação"
+      },
+      {
+        "type": "caption",
+        "text": "<b>Figura 8 - </b>Seis erros de M4, escolhido exclusivamente pela validação."
+      },
+      {
+        "type": "figure",
+        "path": "reports/figures/fig08_analise_erros.png",
+        "max_height_cm": 10.5
+      },
+      {
+        "type": "source",
+        "text": "Fonte: Imagens do TrashNet (Thung; Yang, 2016); previsões do modelo selecionado."
+      },
+      {
+        "type": "body",
+        "text": "O modelo selecionado errou 159 das 380 imagens de teste. O painel mostra até seis erros com maior probabilidade atribuída à classe prevista, com desempate pelo caminho do arquivo. Esse critério expõe erros de alta probabilidade, não uma amostra representativa de todos os erros. Softmax não equivale a confiança calibrada."
+      },
+      {
+        "type": "body",
+        "text": "Em plastic364, o grande rótulo impresso ocupa parte da embalagem prevista como papel. Glass501 e glass499 são garrafas transparentes previstas como plástico. Cardboard33 apresenta superfície lisa e brilhante; metal37 mostra apenas parte de uma superfície curva refletiva: ambos foram previstos como plástico. Cardboard239, previsto como papel, exibe impressão colorida sobre a caixa. São hipóteses visuais de ambiguidade, sem prova de quais atributos a rede utilizou."
+      },
+      {
+        "type": "small",
+        "text": "Na matriz de M4, paper → plastic e metal → glass somam 15 erros cada; glass → metal e glass → trash têm 14 cada. O painel de alta probabilidade não reproduz necessariamente essa frequência. Ruído nos rótulos de treino e semelhança entre embalagens limitam a interpretação, mesmo sem cópias exatas atravessando as partições."
+      },
+      {
+        "type": "body",
+        "text": "O domínio é restrito: objetos geralmente isolados, fundos claros e pouca diversidade de cenários. Não houve avaliação externa com lixo misturado, oclusão, sujeira, múltiplos objetos ou novas câmeras. A classe trash agrega objetos distintos e a distribuição real pode diferir. Assim, os resultados não demonstram prontidão para uma esteira de triagem ou para decidir a reciclabilidade local de cada embalagem."
+      },
+      {
+        "type": "small",
+        "text": "Há uma única semente e uma única divisão. Hashes não identificam todas as fotos diferentes do mesmo objeto; a independência por instância não é garantida. A busca exploratória também reutiliza a validação e pode se ajustar a ela. Repetições com sementes distintas, avaliação por objeto e um conjunto externo constituem próximos passos, sem reinterpretar o teste atual como validação."
+      }
+    ],
+    [
+      {
+        "type": "h1",
+        "text": "4.2 Comparação com o estudo de referência"
+      },
+      {
+        "type": "small",
+        "text": "Yang e Thung (2016) reportaram 63% de acurácia com SVM e seis classes, usando 70/30 para treino/teste, e 22% com CNN após excluir trash, com cinco classes, entrada 256 × 256 e divisão 70/13/17. Aqui há seis classes, divisão 70/15/15 aproximada, outra arquitetura e treinamento. Esses valores são contexto histórico, não comparação controlada. Os aproximadamente 75% de CNN citados no README do TrashNet pertencem à continuação posterior dos experimentos (Thung; Yang, 2016)."
+      },
+      {
+        "type": "h1",
+        "text": "5 Conclusão"
+      },
+      {
+        "type": "small",
+        "text": "O estudo executou os seis contrastes com divisão comum, inicializações controladas e teste reservado. As CNNs superaram as MLPs no F1 macro em ambos os pares de 128 × 96. A CNN ponderada, escolhida pela validação, atingiu F1 macro de teste 0,5718: recuperou trash, com perdas em outras classes. A ponderação prejudicou o F1 macro da MLP. Nas CNNs sem pesos, a maior resolução não compensou seu custo. Essas conclusões se restringem à divisão, semente e orçamento adotados. Repetições, aumento de dados, transferência de aprendizagem e avaliação externa são próximos passos. A extensão opcional YOLO não foi realizada."
+      },
+      {
+        "type": "small",
+        "text": "Tabelas e figuras usam NumPy, pandas e Matplotlib (NumPy Developers, s.d.; Pandas Development Team, s.d.; Matplotlib Development Team, s.d.). Código, modelos, históricos e previsões acompanham o artigo. A elaboração recebeu assistência de IA; a conferência, compreensão e revisão pelos integrantes permanecem necessárias antes da submissão."
+      },
+      {
+        "type": "h1",
+        "text": "Referências"
+      },
+      {
+        "type": "reference",
+        "text": "MATPLOTLIB DEVELOPMENT TEAM. <b>Matplotlib documentation</b>. [S. l.], [s. d.]. Disponível em: https://matplotlib.org/stable/. Acesso em: 16 out. 2026."
+      },
+      {
+        "type": "reference",
+        "text": "NUMPY DEVELOPERS. <b>NumPy documentation</b>. [S. l.], [s. d.]. Disponível em: https://numpy.org/doc/stable/. Acesso em: 16 out. 2026."
+      },
+      {
+        "type": "reference",
+        "text": "PANDAS DEVELOPMENT TEAM. <b>pandas documentation</b>. [S. l.], [s. d.]. Disponível em: https://pandas.pydata.org/docs/. Acesso em: 17 out. 2026."
+      },
+      {
+        "type": "reference",
+        "text": "PILLOW CONTRIBUTORS. <b>Image module</b>. In: Pillow documentation. [S. l.], [s. d.]. Disponível em: https://pillow.readthedocs.io/en/stable/reference/Image.html. Acesso em: 16 out. 2026."
+      },
+      {
+        "type": "reference",
+        "text": "PYTORCH CONTRIBUTORS. <b>CrossEntropyLoss</b>. In: PyTorch documentation. [S. l.], [s. d.]. Disponível em: https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html. Acesso em: 16 out. 2026."
+      },
+      {
+        "type": "reference",
+        "text": "RODOLA, Giampaolo. <b>psutil documentation</b>. [S. l.], [s. d.]. Disponível em: https://psutil.readthedocs.io/stable/. Acesso em: 17 out. 2026."
+      },
+      {
+        "type": "reference",
+        "text": "SCIKIT-LEARN DEVELOPERS. <b>classification_report</b>. In: Scikit-learn documentation. [S. l.], [s. d.]. Disponível em: https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html. Acesso em: 16 out. 2026."
+      },
+      {
+        "type": "reference",
+        "text": "THUNG, Gary; YANG, Mindy. <b>TrashNet</b>. GitHub, [2016]. Disponível em: https://github.com/garythung/trashnet. Acesso em: 16 out. 2026."
+      },
+      {
+        "type": "reference",
+        "text": "YANG, Mindy; THUNG, Gary. <b>Classification of trash for recyclability status</b>. Stanford: Stanford University, 2016. Relatório de projeto, CS229. Disponível em: https://cs229.stanford.edu/proj2016/report/ThungYang-ClassificationOfTrashForRecyclabilityStatus-report.pdf. Acesso em: 16 out. 2026."
+      }
+    ]
+  ]
+}

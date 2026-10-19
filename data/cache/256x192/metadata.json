@@ -1,0 +1,13 @@
+{
+  "shape": [
+    2527,
+    3,
+    192,
+    256
+  ],
+  "dtype": "uint8",
+  "layout": "NCHW",
+  "manifest_sha256": "988a0a94bf617b8f3ab88e9d6da355001cb8fe2dc59f98004779bc245b9adf7f",
+  "images_sha256": "25510540c8fde4bb433c089480169238ca8c42b84d789829eb8e703103df3c48",
+  "resize": "Pillow LANCZOS"
+}

@@ -1,0 +1,181 @@
+{
+  "class_order": [
+    "glass",
+    "paper",
+    "cardboard",
+    "plastic",
+    "metal",
+    "trash"
+  ],
+  "examples": [
+    {
+      "class_name": "glass",
+      "path": "glass/glass1.jpg",
+      "split": "train"
+    },
+    {
+      "class_name": "glass",
+      "path": "glass/glass320.jpg",
+      "split": "train"
+    },
+    {
+      "class_name": "paper",
+      "path": "paper/paper10.jpg",
+      "split": "train"
+    },
+    {
+      "class_name": "paper",
+      "path": "paper/paper367.jpg",
+      "split": "train"
+    },
+    {
+      "class_name": "cardboard",
+      "path": "cardboard/cardboard10.jpg",
+      "split": "train"
+    },
+    {
+      "class_name": "cardboard",
+      "path": "cardboard/cardboard282.jpg",
+      "split": "train"
+    },
+    {
+      "class_name": "plastic",
+      "path": "plastic/plastic10.jpg",
+      "split": "train"
+    },
+    {
+      "class_name": "plastic",
+      "path": "plastic/plastic313.jpg",
+      "split": "train"
+    },
+    {
+      "class_name": "metal",
+      "path": "metal/metal10.jpg",
+      "split": "train"
+    },
+    {
+      "class_name": "metal",
+      "path": "metal/metal281.jpg",
+      "split": "train"
+    },
+    {
+      "class_name": "trash",
+      "path": "trash/trash1.jpg",
+      "split": "train"
+    },
+    {
+      "class_name": "trash",
+      "path": "trash/trash37.jpg",
+      "split": "train"
+    }
+  ],
+  "resolution_example": {
+    "path": "plastic/plastic10.jpg",
+    "split": "train",
+    "display": "Equal physical panel size; nearest-neighbor display of actual NCHW cache images, generated with EXIF transpose and Pillow LANCZOS from the reference source."
+  },
+  "source_manifest_sha256": "988a0a94bf617b8f3ab88e9d6da355001cb8fe2dc59f98004779bc245b9adf7f",
+  "formats": [
+    "png",
+    "svg"
+  ],
+  "png_dpi": 300,
+  "errors": {
+    "experiment": "cnn_128_weighted",
+    "total_test_errors": 159,
+    "selection_rule": "up to six highest predicted-class probabilities among mistakes; ties by source path",
+    "shown": [
+      {
+        "manifest_index": 1792,
+        "path": "plastic/plastic364.jpg",
+        "y_true": 3,
+        "y_pred": 1,
+        "true_class": "plastic",
+        "pred_class": "paper",
+        "pred_probability": 0.7006551623344421,
+        "prob_glass": 0.0618453249335289,
+        "prob_paper": 0.7006551623344421,
+        "prob_cardboard": 0.0209476072341203,
+        "prob_plastic": 0.0929158926010131,
+        "prob_metal": 0.0644752383232116,
+        "prob_trash": 0.0591608025133609
+      },
+      {
+        "manifest_index": 447,
+        "path": "glass/glass501.jpg",
+        "y_true": 0,
+        "y_pred": 3,
+        "true_class": "glass",
+        "pred_class": "plastic",
+        "pred_probability": 0.6847259402275085,
+        "prob_glass": 0.0867372751235961,
+        "prob_paper": 0.042649570852518,
+        "prob_cardboard": 0.0285334847867488,
+        "prob_plastic": 0.6847259402275085,
+        "prob_metal": 0.1376585513353347,
+        "prob_trash": 0.0196952037513256
+      },
+      {
+        "manifest_index": 1351,
+        "path": "cardboard/cardboard33.jpg",
+        "y_true": 2,
+        "y_pred": 3,
+        "true_class": "cardboard",
+        "pred_class": "plastic",
+        "pred_probability": 0.665279746055603,
+        "prob_glass": 0.1250631362199783,
+        "prob_paper": 0.0239543300122022,
+        "prob_cardboard": 0.0322208888828754,
+        "prob_plastic": 0.665279746055603,
+        "prob_metal": 0.1420286297798156,
+        "prob_trash": 0.0114532457664608
+      },
+      {
+        "manifest_index": 2280,
+        "path": "metal/metal37.jpg",
+        "y_true": 4,
+        "y_pred": 3,
+        "true_class": "metal",
+        "pred_class": "plastic",
+        "pred_probability": 0.6593600511550903,
+        "prob_glass": 0.1452106833457946,
+        "prob_paper": 0.0186438094824552,
+        "prob_cardboard": 0.0215469114482402,
+        "prob_plastic": 0.6593600511550903,
+        "prob_metal": 0.1415611207485199,
+        "prob_trash": 0.0136774154379963
+      },
+      {
+        "manifest_index": 443,
+        "path": "glass/glass499.jpg",
+        "y_true": 0,
+        "y_pred": 3,
+        "true_class": "glass",
+        "pred_class": "plastic",
+        "pred_probability": 0.6131076812744141,
+        "prob_glass": 0.1710608005523681,
+        "prob_paper": 0.0213550347834825,
+        "prob_cardboard": 0.0299498345702886,
+        "prob_plastic": 0.6131076812744141,
+        "prob_metal": 0.1502263993024826,
+        "prob_trash": 0.0143002634868025
+      },
+      {
+        "manifest_index": 1250,
+        "path": "cardboard/cardboard239.jpg",
+        "y_true": 2,
+        "y_pred": 1,
+        "true_class": "cardboard",
+        "pred_class": "paper",
+        "pred_probability": 0.6119330525398254,
+        "prob_glass": 0.0061290659941732,
+        "prob_paper": 0.6119330525398254,
+        "prob_cardboard": 0.1147810891270637,
+        "prob_plastic": 0.000954289746005,
+        "prob_metal": 0.2613747119903564,
+        "prob_trash": 0.0048277853056788
+      }
+    ]
+  },
+  "selection_lock_sha256": "7f8b3746155d78f4a69911f4e5d98e2151ff676301d9195084b615bd1717125b"
+}

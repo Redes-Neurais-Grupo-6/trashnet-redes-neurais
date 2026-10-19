@@ -1,0 +1,28 @@
+{
+  "titulo": "Classificação de resíduos com redes neurais: arquitetura, desequilíbrio e resolução no TrashNet",
+  "autores": [
+    {
+      "nome": "JOÃO VICTOR OLIVEIRA GOMES",
+      "matricula": "9999999"
+    },
+    {
+      "nome": "DANILLO CASTRO DE SOUSA",
+      "matricula": "9999999"
+    },
+    {
+      "nome": "PEDRO HENRIQUE CÂMARA MATOS",
+      "matricula": "9999999"
+    },
+    {
+      "nome": "LETÍCIA MONTEIRO VIDAL",
+      "matricula": "9999999"
+    },
+    {
+      "nome": "FRANCISCO VITOR RODRIGUES XAVIER",
+      "matricula": "9999999"
+    }
+  ],
+  "github_url": "",
+  "data": "17 de outubro de 2026",
+  "revisao_da_equipe_concluida": false
+}

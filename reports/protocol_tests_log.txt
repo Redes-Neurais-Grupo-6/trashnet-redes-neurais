@@ -1,0 +1,32 @@
+Registro da execução real; caminho absoluto do projeto abreviado como <PROJETO>.
+
+test_cost_uses_measured_fields_and_mib_without_estimation (test_evaluation.ArtifactTests.test_cost_uses_measured_fields_and_mib_without_estimation) ... ok
+test_existing_test_results_prevent_retroactive_lock (test_evaluation.ArtifactTests.test_existing_test_results_prevent_retroactive_lock) ... ok
+test_lock_blocks_mutated_checkpoint_config_source_and_cache_metadata (test_evaluation.ArtifactTests.test_lock_blocks_mutated_checkpoint_config_source_and_cache_metadata) ... ok
+test_lock_rejects_tampered_selection_even_with_unchanged_checkpoint_hashes (test_evaluation.ArtifactTests.test_lock_rejects_tampered_selection_even_with_unchanged_checkpoint_hashes) ... ok
+test_lock_selects_macro_f1_not_accuracy_and_breaks_ties_stably (test_evaluation.ArtifactTests.test_lock_selects_macro_f1_not_accuracy_and_breaks_ties_stably) ... ok
+test_manifest_rejects_duplicate_paths_class_mismatch_and_leakage (test_evaluation.ArtifactTests.test_manifest_rejects_duplicate_paths_class_mismatch_and_leakage) ... ok
+test_result_publication_is_idempotent_but_refuses_overwrite (test_evaluation.ArtifactTests.test_result_publication_is_idempotent_but_refuses_overwrite) ... ok
+test_stale_training_metadata_and_mixed_configuration_are_rejected (test_evaluation.ArtifactTests.test_stale_training_metadata_and_mixed_configuration_are_rejected) ... ok
+test_validation_coverage_and_truth_are_checked_before_selection (test_evaluation.ArtifactTests.test_validation_coverage_and_truth_are_checked_before_selection) ... ok
+test_bootstrap_matches_independent_sklearn_reference (test_evaluation.MetricTests.test_bootstrap_matches_independent_sklearn_reference) ... ok
+test_exact_counts_row_percent_and_macro_average (test_evaluation.MetricTests.test_exact_counts_row_percent_and_macro_average) ... ok
+test_perfect_predictions_have_degenerate_bootstrap_intervals (test_evaluation.MetricTests.test_perfect_predictions_have_degenerate_bootstrap_intervals) ... ok
+test_zero_division_keeps_all_six_classes_in_average (test_evaluation.MetricTests.test_zero_division_keeps_all_six_classes_in_average) ... ok
+test_cache_rejects_manifest_reordering (test_protocol.ProtocolTests.test_cache_rejects_manifest_reordering) ... ok
+test_equal_initialization_and_constant_cnn_size (test_protocol.ProtocolTests.test_equal_initialization_and_constant_cnn_size) ... ok
+test_resume_reproduces_continuous_weights_and_restores_best (test_protocol.ProtocolTests.test_resume_reproduces_continuous_weights_and_restores_best) ... continuous epoch=01 train_loss=1.8316 val_loss=1.7977 val_f1=0.0476 seconds=0.06 best=1
+continuous epoch=02 train_loss=1.7980 val_loss=1.7995 val_f1=0.0476 seconds=0.02 best=1
+continuous epoch=03 train_loss=1.7557 val_loss=1.7992 val_f1=0.0833 seconds=0.02 best=1
+{"completed": "continuous", "best_epoch": 1, "restored_val_f1_macro": 0.047619047619047616, "total_seconds": 0.08872662499993567}
+resumed epoch=02 train_loss=1.7980 val_loss=1.7995 val_f1=0.0476 seconds=0.04 best=1
+resumed epoch=03 train_loss=1.7557 val_loss=1.7992 val_f1=0.0833 seconds=0.02 best=1
+{"completed": "resumed", "best_epoch": 1, "restored_val_f1_macro": 0.047619047619047616, "total_seconds": 0.07655755799999042}
+ok
+test_selection_lock_and_test_results_block_training (test_protocol.ProtocolTests.test_selection_lock_and_test_results_block_training) ... ok
+test_weights_use_training_only_and_loss_normalizes_correctly (test_protocol.ProtocolTests.test_weights_use_training_only_and_loss_normalizes_correctly) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 3.916s
+
+OK
