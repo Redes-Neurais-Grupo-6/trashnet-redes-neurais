@@ -1,0 +1,10 @@
+{
+  "mean_val_f1_by_rate": {
+    "0.001": 0.3231680996301116,
+    "0.0003": 0.41842295382238326,
+    "0.0001": 0.46405474873854113
+  },
+  "selected_learning_rate": 0.0001,
+  "test_used": false,
+  "decision_before_final_test": true
+}

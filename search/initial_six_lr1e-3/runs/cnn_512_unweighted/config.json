@@ -1,0 +1,23 @@
+{
+  "seed": 42,
+  "batch_size": 32,
+  "max_epochs": 25,
+  "patience": 5,
+  "min_delta": 0.0,
+  "learning_rate": 0.001,
+  "optimizer": "Adam",
+  "weight_decay": 0.0,
+  "dropout": 0.2,
+  "threads": 4,
+  "num_workers": 0,
+  "normalization": "RGB uint8 / 255.0",
+  "augmentation": "none",
+  "checkpoint_metric": "val_loss_min",
+  "selection_metric": "restored_val_f1_macro_max",
+  "device": "cpu",
+  "id": "cnn_512_unweighted",
+  "architecture": "cnn",
+  "width": 512,
+  "height": 384,
+  "class_weights": false
+}

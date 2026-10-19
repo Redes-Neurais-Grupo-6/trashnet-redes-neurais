@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "class_order": [
+    "glass",
+    "paper",
+    "cardboard",
+    "plastic",
+    "metal",
+    "trash"
+  ],
+  "defaults": {
+    "seed": 42,
+    "batch_size": 32,
+    "max_epochs": 25,
+    "patience": 5,
+    "min_delta": 0.0,
+    "learning_rate": 0.0001,
+    "optimizer": "Adam",
+    "weight_decay": 0.0,
+    "dropout": 0.2,
+    "threads": 4,
+    "num_workers": 0,
+    "normalization": "RGB uint8 / 255.0",
+    "augmentation": "none",
+    "checkpoint_metric": "val_loss_min",
+    "selection_metric": "restored_val_f1_macro_max",
+    "device": "cpu"
+  },
+  "experiments": [
+    {
+      "id": "mlp_128_unweighted",
+      "architecture": "mlp",
+      "width": 128,
+      "height": 96,
+      "class_weights": false
+    },
+    {
+      "id": "mlp_128_weighted",
+      "architecture": "mlp",
+      "width": 128,
+      "height": 96,
+      "class_weights": true
+    },
+    {
+      "id": "cnn_128_unweighted",
+      "architecture": "cnn",
+      "width": 128,
+      "height": 96,
+      "class_weights": false
+    },
+    {
+      "id": "cnn_128_weighted",
+      "architecture": "cnn",
+      "width": 128,
+      "height": 96,
+      "class_weights": true
+    },
+    {
+      "id": "cnn_256_unweighted",
+      "architecture": "cnn",
+      "width": 256,
+      "height": 192,
+      "class_weights": false
+    },
+    {
+      "id": "cnn_512_unweighted",
+      "architecture": "cnn",
+      "width": 512,
+      "height": 384,
+      "class_weights": false
+    }
+  ]
+}

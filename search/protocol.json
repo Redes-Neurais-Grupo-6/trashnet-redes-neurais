@@ -1,0 +1,12 @@
+{
+  "candidate_learning_rates": [
+    0.001,
+    0.0003,
+    0.0001
+  ],
+  "ranking": "mean of restored validation macro F1 for unweighted MLP128 and CNN128",
+  "selection": "maximum mean; first candidate wins exact ties",
+  "trigger": "Exploratory search after unstable initial validation learning curves; test not accessed.",
+  "unchanged": "architecture, seed42, split, optimizer Adam, batch32, max25, patience5, preprocessing",
+  "test_used": false
+}

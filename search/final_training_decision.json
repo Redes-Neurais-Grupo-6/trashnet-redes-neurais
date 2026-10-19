@@ -1,0 +1,7 @@
+{
+  "created_at_utc": "2026-10-17T18:27:54.825863+00:00",
+  "learning_rate": 0.0001,
+  "all_six_reinitialized": true,
+  "test_accessed": false,
+  "basis": "Maximum mean restored validation macro F1 across MLP128 and CNN128 without weights in three-rate exploratory search."
+}
