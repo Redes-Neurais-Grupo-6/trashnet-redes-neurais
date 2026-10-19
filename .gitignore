@@ -1,0 +1,14 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.DS_Store
+data/raw/
+data/*.zip
+data/cache/*/images.npy
+runs/*/last.pt
+search/**/last.pt
+search/**/model.pt
+search/**/data
+*.tmp
